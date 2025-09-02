@@ -90,7 +90,7 @@ function LayoutBanner(): React.JSX.Element {
     <div className={BannerComponentsCss['layout-banner']}>
       {/* 左 */}
       <div className={BannerComponentsCss['layout-image']}>
-        <img src="/public/favicon.jpg" alt="我的网站" className={BannerComponentsCss['img']} />
+        <img src="/favicon.jpg" alt="我的网站" className={BannerComponentsCss['img']} />
       </div>
       {/* 中 */}
       <div className="layout-list">

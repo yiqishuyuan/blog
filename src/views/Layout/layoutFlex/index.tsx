@@ -3,7 +3,7 @@ import BannerComponentsCss from './index.module.scss';
 import { useNavigate } from 'react-router-dom';
 import type { MenuProps, AutoCompleteProps } from 'antd';
 import { Menu, AutoComplete, Input } from 'antd';
-
+import { useScrollDirection } from '@/hooks';
 type MenuItem = Required<MenuProps>['items'][number];
 
 const items: MenuItem[] = [
@@ -71,6 +71,7 @@ const items: MenuItem[] = [
 const getRandomInt = (max: number, min = 0) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 function LayoutBanner(): React.JSX.Element {
+  const scrollDir = useScrollDirection(5);
   const [hidden, setHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [current, setCurrent] = useState('mail');
@@ -107,45 +108,46 @@ function LayoutBanner(): React.JSX.Element {
   }, [lastScrollY]);
 
   return (
-    
-      <div className={`${BannerComponentsCss['layout-banner']} ${hidden ? BannerComponentsCss.hidden : ""}`}>
-        {/* 左 */}
-        <div className={BannerComponentsCss['layout-image']}>
-          <img src="/public/favicon.jpg" alt="我的网站" className={BannerComponentsCss['img']} />
-        </div>
-        {/* 中 */}
-        <div className="layout-list">
-          <Menu
-            onClick={onClick}
-            selectedKeys={[current]}
-            mode="horizontal"
-            items={items}
-            style={{
-              height: '70px',
-              lineHeight: '70px',
-              borderBottom: 'none',
-              width: '600px',
-            }}
-          />
-        </div>
-        {/* 搜索 */}
-        <div className="search">
-          <AutoComplete
-            popupMatchSelectWidth={252}
-            style={{ width: 300 }}
-            options={options}
-            onSelect={onSelect}
-            onSearch={handleSearch}
-          >
-            <Input.Search size="large" placeholder="对全局信息检索......" enterButton />
-          </AutoComplete>
-        </div>
-        {/* 注册 */}
-        <div className={BannerComponentsCss['layout-other']}>
-          <span>登录</span>
-          <span>注册</span>
-        </div>
+    <div
+      className={`${BannerComponentsCss['layout-banner']} ${scrollDir === 'down' ? BannerComponentsCss.hidden : ''}`}
+    >
+      {/* 左 */}
+      <div className={BannerComponentsCss['layout-image']}>
+        <img src="/favicon.jpg" alt="我的网站" className={BannerComponentsCss['img']} />
       </div>
+      {/* 中 */}
+      <div className="layout-list">
+        <Menu
+          onClick={onClick}
+          selectedKeys={[current]}
+          mode="horizontal"
+          items={items}
+          style={{
+            height: '70px',
+            lineHeight: '70px',
+            borderBottom: 'none',
+            width: '600px',
+          }}
+        />
+      </div>
+      {/* 搜索 */}
+      <div className="search">
+        <AutoComplete
+          popupMatchSelectWidth={252}
+          style={{ width: 300 }}
+          options={options}
+          onSelect={onSelect}
+          onSearch={handleSearch}
+        >
+          <Input.Search size="large" placeholder="对全局信息检索......" enterButton />
+        </AutoComplete>
+      </div>
+      {/* 注册 */}
+      <div className={BannerComponentsCss['layout-other']}>
+        <span>登录</span>
+        <span>注册</span>
+      </div>
+    </div>
   );
 }
 const searchResult = (query: string) =>
