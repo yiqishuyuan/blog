@@ -5,7 +5,11 @@
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  right: 0;
   z-index: 1000;
+  transition: transform 0.3s ease;
   .layout-image {
     margin-left: 20px;
     img {
@@ -22,5 +26,8 @@
         color: #1890ff;
       }
     }
+  }
+  &.hidden {
+    transform: translateY(-100%);
   }
 }
