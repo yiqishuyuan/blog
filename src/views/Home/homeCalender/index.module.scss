@@ -1,0 +1,46 @@
+.title {
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  .hTitle {
+    height: 100%;
+    font-size: 36px;
+    font-weight: bold;
+    // align-items: center;
+  }
+  .introduce-content {
+    height: 100%;
+    font-size: 16px;
+    color: #666;
+    display: flex; /* 启用 flex */
+    align-items: flex-end; /* 垂直方向对齐到底部 */
+    justify-content: flex-end;
+  }
+}
+.check-styled-button {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: end;
+  text-align: center;
+  padding-right: 25px;
+  .checked-span {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #dadada;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+}
+.checked-section {
+  width: 1300px;
+  height: 500px;
+  margin: 0 auto;
+}

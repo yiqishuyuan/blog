@@ -1,0 +1,18 @@
+@mixin grid-background($size: 40px, $grid-color: rgba(0, 0, 0, 0.05)) {
+  background-image:
+    linear-gradient(to right, $grid-color 1px, transparent 1px),
+    linear-gradient(to bottom, $grid-color 1px, transparent 1px);
+  background-size: $size $size;
+}
+
+@mixin decorative-circle($position...) {
+  content: "";
+  position: absolute;
+  width: $circle-size;
+  height: $circle-size;
+  border: $circle-border;
+  border-radius: 50%;
+  @each $key, $val in $position {
+    #{$key}: $val;
+  }
+}
