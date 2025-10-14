@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import SponsorshipCss from "./index.module.scss";
 import { AutoComplete, Table, DatePicker } from "antd";
 import type { AutoCompleteProps } from "antd";
-import { QuestionCircleOutlined } from "@ant-design/icons";
+// import { QuestionCircleOutlined } from "@ant-design/icons";
 const dataSource = [
   {
     key: "1",
