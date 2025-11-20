@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { EnvironmentOutlined, QqOutlined, GithubOutlined, WechatOutlined } from '@ant-design/icons';
-import { Divider, Flex, Tag } from 'antd';
+import {
+  EnvironmentOutlined,
+  QqOutlined,
+  GithubOutlined,
+  WechatOutlined,
+  ShrinkOutlined,
+  TransactionOutlined,
+} from '@ant-design/icons';
+import { Divider, Flex, Tag, Button } from 'antd';
 import MarkdownRenderer from './components/mdPage';
 import Toc from './components/mdToc';
 const About = () => {
@@ -259,8 +266,16 @@ export default tseslint.config([
           <div className="about-content">
             {/* 此处使用md或者文章渲染 */}
             <MarkdownRenderer content={md} onHeadings={(list) => setToc(list)} />;
-            <div>
+            <div className="footer">
               <p> 喜欢这篇文章/网站？打赏/订阅一下网站吧！</p>
+              <div className="footer-content">
+                <Button type="primary" icon={<TransactionOutlined />}>
+                  打赏
+                </Button>
+                <Button  color="default" variant="outlined" icon={<ShrinkOutlined />}>
+                  订阅
+                </Button>
+              </div>
             </div>
           </div>
         </div>

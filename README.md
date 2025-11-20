@@ -1,69 +1,98 @@
-# React + TypeScript + Vite
+# 我的个人博客
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+欢迎来到我的个人博客！这里记录我的技术分享、学习笔记和项目实践。
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 博客目录
 
-## Expanding the ESLint configuration
+1. [关于我](#关于我)
+2. [技术栈](#技术栈)
+3. [项目分享](#项目分享)
+4. [学习笔记](#学习笔记)
+5. [文章示例](#文章示例)
+6. [多篇文章](#多篇文章)
+7. [联系方式](#联系方式)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 关于我
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+我是一个前端开发爱好者，专注于 React、TypeScript 以及前端工程化。  
+> “学无止境，技术日新月异。”
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- 年龄：22  
+- 城市：四川、成都  
+- 爱好：阅读、编程、旅行  
+
+---
+
+## 技术栈
+
+- **前端**：
+  - React 18
+  - TypeScript
+  - Vite / Webpack
+  - CSS / SCSS / Tailwind
+- **后端**：
+  - Node.js
+  - Express
+  - MySQL
+- **工具**：
+  - Git / GitHub
+  - Docker
+  - VS Code
+
+---
+
+## 项目分享
+
+### 项目 1：React + TypeScript Todo 应用
+
+- **功能**：
+  1. 添加 / 删除任务
+  2. 状态管理使用 Redux Toolkit
+  3. 支持本地存储
+- **技术亮点**：
+  - TypeScript 类型安全
+  - React Hooks + 函数组件
+  - 响应式布局
+
+### 项目 2：个人博客网站
+
+- **功能**：
+  1. Markdown 博客文章渲染
+  2. 文章目录自动生成
+  3. 代码高亮、复制功能
+- **技术亮点**：
+  - highlight.js 渲染代码块
+  - GitHub 风格 Markdown 样式
+  - 可折叠 / 粘性侧边栏 TOC
+
+---
+
+## 学习笔记
+
+### React Hooks
+
+- `useState`：状态管理  
+- `useEffect`：副作用处理  
+- `useMemo` / `useCallback`：性能优化  
+
+### TypeScript 类型
+
+```ts
+interface User {
+  id: number;
+  name: string;
+  email?: string;
+}
+
+function greet<T extends { name: string }>(user: T) {
+  return `Hello, ${user.name}`;
+}
+
 ```
+# test only !
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+这篇md是由PAI测试写出，仅为测试文档渲染。
