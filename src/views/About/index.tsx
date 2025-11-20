@@ -1,8 +1,8 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { EnvironmentOutlined, QqOutlined, GithubOutlined, WechatOutlined } from '@ant-design/icons';
 import { Divider, Flex, Tag } from 'antd';
 import MarkdownRenderer from './components/mdPage';
-
+import Toc from './components/mdToc';
 const About = () => {
   const md = `
 # React + TypeScript + Vite
@@ -80,7 +80,6 @@ export default tseslint.config([
     console.log('目录:', toc);
   }, [toc]);
   return (
-
     <div className="about-us">
       <div className="about-container" style={{ width: '100%', display: 'flex' }}>
         <div className="about-grid-1" style={{ width: '400px' }}>
@@ -259,14 +258,14 @@ export default tseslint.config([
         <div className="about-grid-2" style={{ width: '700px' }}>
           <div className="about-content">
             {/* 此处使用md或者文章渲染 */}
-            <MarkdownRenderer content={md} onHeadings={(list)=>setToc(list)} />;
+            <MarkdownRenderer content={md} onHeadings={(list) => setToc(list)} />;
             <div>
               <p> 喜欢这篇文章/网站？打赏/订阅一下网站吧！</p>
             </div>
           </div>
         </div>
         <div className="about-grid-3">
-
+          <Toc headings={toc} />
         </div>
       </div>
     </div>
