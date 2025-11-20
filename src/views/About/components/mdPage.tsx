@@ -1,23 +1,27 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github.css';
 // GitHub Markdown 样式
 import 'github-markdown-css/github-markdown.css';
-
+import { rehypeCollectHeadings } from './rehypeCollectHeadings';
 type MarkdownViewerProps = {
   content: string;
+  onHeadings?: (list: { id: string; text: string; level: number }[]) => void;
 };
 type CodeProps = {
-  inline?: boolean;
+  inline?: boolean; 
   className?: string;
   children?: React.ReactNode;
 };
 
-export default function MarkdownViewer({ content }: MarkdownViewerProps) {
+export default function MarkdownViewer({ content, onHeadings }: MarkdownViewerProps) {
   const [copied, setCopied] = useState(false);
-
+  const tocRef = useRef([]);
+  const [prevContent, setPrevContent] = useState<string>('');
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
     setCopied(true);
@@ -26,10 +30,22 @@ export default function MarkdownViewer({ content }: MarkdownViewerProps) {
   useEffect(() => {
     hljs.configure({ ignoreUnescapedHTML: true });
   }, []);
+  useEffect(() => {
+    // ⚡ 只有内容变化才更新
+    if (content !== prevContent && onHeadings && tocRef.current.length > 0) {
+      onHeadings(tocRef.current);
+      setPrevContent(content); // 记录已经处理过的内容
+    }
+  }, [content, onHeadings, prevContent]);
   return (
     <div className="markdown-body" style={{ padding: 20 }}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
+        rehypePlugins={[
+          rehypeSlug,
+          [rehypeAutolinkHeadings, { behavior: 'prepend' }], // 可选，给标题加锚点
+          [rehypeCollectHeadings, (list:any) => (tocRef.current = list)],
+        ]}
         components={{
           code({ inline, className, children, ...props }: CodeProps) {
             const codeText = String(children).replace(/\n$/, '');
